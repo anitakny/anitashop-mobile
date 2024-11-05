@@ -21,14 +21,15 @@ samples, guidance on mobile development, and a full API reference.
 * Stateful Widget adalah widget yang bersifat muttable atau widget yang dapat berubah dan memiliki state yang bisa diperbarui saat aplikasi berjalan. Widget ini memiliki objek State terpisah yang digunakan untuk menyimpan data atau status yang dapat diubah. Cocok untuk elemen yang perlu diubah atau diperbarui secara real-time, misalnya mengubah teks ketika tombol ditekan atau memperbarui data dari internet.
 ## Sebutkan widget apa saja yang kamu gunakan pada proyek ini dan jelaskan fungsinya
 1. `main.dart`
-| Nama          | Fungsi                                                                                               |
-| --------------|:-----------------------------------------------------------------------------------------------------:|
-| `runApp`      | Memulai aplikasi Flutter dan menampilkan widget yang diberikan di layar penuh.                       |
-| `MaterialApp` | Widget utama yang mengatur keseluruhan aplikasi Flutter. Menyediakan tema, navigasi, dan pengaturan parameter penting seperti judul aplikasi. |
-| `ThemeData`   | Mendefinisikan tema aplikasi, termasuk warna, font, dan gaya elemen UI.                             |
-| `ColorScheme` | Menyediakan skema warna untuk aplikasi, termasuk warna primer dan sekunder yang digunakan di seluruh aplikasi. |
 
-2. `menu.dart`
+| Nama          | Fungsi                                                                                                                                        |
+| --------------|:---------------------------------------------------------------------------------------------------------------------------------------------:|
+| `runApp`      | Memulai aplikasi Flutter dan menampilkan widget yang diberikan di layar penuh.                                                                |
+| `MaterialApp` | Widget utama yang mengatur keseluruhan aplikasi Flutter. Menyediakan tema, navigasi, dan pengaturan parameter penting seperti judul aplikasi. |
+| `ThemeData`   | Mendefinisikan tema aplikasi, termasuk warna, font, dan gaya elemen UI.                                                                       |
+| `ColorScheme` | Menyediakan skema warna untuk aplikasi, termasuk warna primer dan sekunder yang digunakan di seluruh aplikasi.                                |
+
+4. `menu.dart`
 | Nama          | Fungsi                                                                                               |
 | --------------|:-----------------------------------------------------------------------------------------------------:|
 | `Scaffold`    | Digunakan untuk mengatur layout utama halaman beserta struktur dasar aplikasi. Widget dasar untuk membangun halaman. |
