@@ -30,18 +30,18 @@ samples, guidance on mobile development, and a full API reference.
 | `ColorScheme` | Menyediakan skema warna untuk aplikasi, termasuk warna primer dan sekunder yang digunakan di seluruh aplikasi.                                |
 
 4. `menu.dart`
-| Nama          | Fungsi                                                                                               |
-| --------------|:-----------------------------------------------------------------------------------------------------:|
-| `Scaffold`    | Digunakan untuk mengatur layout utama halaman beserta struktur dasar aplikasi. Widget dasar untuk membangun halaman. |
-| `AppBar`      | Widget yang digunakan untuk menyediakan area header di bagian atas layar, biasanya berisi judul dan opsi navigasi.   |
-| `Padding`     | Memberikan ruang kosong di sekitar widget.                                                           |
-| `Column`      | Menyusun widget secara vertikal.                                                                     |
-| `Row`         | Menyusun widget secara horizontal. Digunakan untuk menampilkan beberapa `InfoCard` secara berdampingan dalam satu baris. |
-| `Card`        | Menampilkan widget dalam kotak dengan efek bayangan, biasanya digunakan untuk menonjolkan informasi tertentu. |
-| `Text`        | Menampilkan teks statis. Digunakan untuk menampilkan berbagai teks seperti judul, sambutan, dan informasi di dalam kartu. |
-| `InkWell`     | Menyediakan efek klik atau sentuh untuk widget yang dibungkusnya.                                   |
-| `SnackBar`    | Menampilkan pesan singkat di bagian bawah layar, biasa digunakan untuk notifikasi sementara.         |
-| `Icon`        | Menampilkan ikon di layar.                                                                            |
+| Nama          | Fungsi                                                                                                                                        |
+| --------------|:---------------------------------------------------------------------------------------------------------------------------------------------:|
+| `Scaffold`    | Digunakan untuk mengatur layout utama halaman beserta struktur dasar aplikasi. Widget dasar untuk membangun halaman.                          |
+| `AppBar`      | Widget yang digunakan untuk menyediakan area header di bagian atas layar, biasanya berisi judul dan opsi navigasi.                            |
+| `Padding`     | Memberikan ruang kosong di sekitar widget.                                                                                                    |
+| `Column`      | Menyusun widget secara vertikal.                                                                                                              |
+| `Row`         | Menyusun widget secara horizontal. Digunakan untuk menampilkan beberapa `InfoCard` secara berdampingan dalam satu baris.                      |
+| `Card`        | Menampilkan widget dalam kotak dengan efek bayangan, biasanya digunakan untuk menonjolkan informasi tertentu.                                 |
+| `Text`        | Menampilkan teks statis. Digunakan untuk menampilkan berbagai teks seperti judul, sambutan, dan informasi di dalam kartu.                     |
+| `InkWell`     | Menyediakan efek klik atau sentuh untuk widget yang dibungkusnya.                                                                             |
+| `SnackBar`    | Menampilkan pesan singkat di bagian bawah layar, biasa digunakan untuk notifikasi sementara.                                                  |
+| `Icon`        | Menampilkan ikon di layar.                                                                                                                    |
 
 Dengan format ini, Anda dapat dengan mudah melihat fungsi masing-masing widget yang digunakan dalam aplikasi Flutter Anda. Jika ada tambahan informasi atau kolom lain yang diinginkan, silakan beri tahu!
 ## Apa fungsi dari `setState()` ? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut
