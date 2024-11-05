@@ -27,20 +27,22 @@ samples, guidance on mobile development, and a full API reference.
 | `MaterialApp` | Widget utama yang mengatur keseluruhan aplikasi Flutter. Menyediakan tema, navigasi, dan pengaturan parameter penting seperti judul aplikasi. |
 | `ThemeData`   | Mendefinisikan tema aplikasi, termasuk warna, font, dan gaya elemen UI.                             |
 | `ColorScheme` | Menyediakan skema warna untuk aplikasi, termasuk warna primer dan sekunder yang digunakan di seluruh aplikasi. |
+
 2. `menu.dart`
 | Nama          | Fungsi                                                                                               |
 | --------------|:-----------------------------------------------------------------------------------------------------|
 | `Scaffold`    | Digunakan untuk mengatur layout utama halaman beserta struktur dasar aplikasi. Widget dasar untuk membangun halaman. |
 | `AppBar`      | Widget yang digunakan untuk menyediakan area header di bagian atas layar, biasanya berisi judul dan opsi navigasi.   |
-| `Padding`     | Memberikan ruang kosong di sekitar widget.                          |
-| `Coloumn`     | Menyusun widget secara vertikal. |
-| `Row`         | Menyusun widget secara horizontal. Digunakan untuk menampilkan beberapa  `InfoCard` secara berdampingan dalam satu baris. |
-| `Card`        | Menampilkan widget dalam kotak dengan efek bayangan, biasanya digunakan untuk menonjolkan informasi tertentu.|
+| `Padding`     | Memberikan ruang kosong di sekitar widget.                                                           |
+| `Column`      | Menyusun widget secara vertikal.                                                                     |
+| `Row`         | Menyusun widget secara horizontal. Digunakan untuk menampilkan beberapa `InfoCard` secara berdampingan dalam satu baris. |
+| `Card`        | Menampilkan widget dalam kotak dengan efek bayangan, biasanya digunakan untuk menonjolkan informasi tertentu. |
 | `Text`        | Menampilkan teks statis. Digunakan untuk menampilkan berbagai teks seperti judul, sambutan, dan informasi di dalam kartu. |
-| `InkWell`     | Menyediakan efek klik atau sentuh untuk widget yang dibungkusnya. |
-| `SnackBar`    | Menampilkan pesan singkat di bagian bawah layar, biasa digunakan untuk notifikasi sementara. |
-| `Icon`        | Menampilkan icon dilayar |
+| `InkWell`     | Menyediakan efek klik atau sentuh untuk widget yang dibungkusnya.                                   |
+| `SnackBar`    | Menampilkan pesan singkat di bagian bawah layar, biasa digunakan untuk notifikasi sementara.         |
+| `Icon`        | Menampilkan ikon di layar.                                                                            |
 
+Dengan format ini, Anda dapat dengan mudah melihat fungsi masing-masing widget yang digunakan dalam aplikasi Flutter Anda. Jika ada tambahan informasi atau kolom lain yang diinginkan, silakan beri tahu!
 ## Apa fungsi dari `setState()` ? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut
 Fungsi `setState()` dalam widget Stateful Flutter digunakan untuk memberitahu framework bahwa ada perubahan pada state widget yang memerlukan pembaruan tampilan. Ketika `setState()` dipanggil, Flutter akan memicu proses rendering ulang hanya pada bagian yang terpengaruh, sehingga perubahan pada UI dapat terlihat dengan segera tanpa perlu merender ulang seluruh halaman. Variabel yang dapat dipengaruhi oleh fungsi ini adalah variabel yang dideklarasikan dalam kelas `State`, yang biasanya menyimpan data dinamis atau status aplikasi yang berubah seiring dengan interaksi pengguna, seperti nilai penghitung, data input pengguna, atau elemen daftar yang diperbarui.
 
