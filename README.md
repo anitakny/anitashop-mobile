@@ -30,6 +30,7 @@ samples, guidance on mobile development, and a full API reference.
 | `ColorScheme` | Menyediakan skema warna untuk aplikasi, termasuk warna primer dan sekunder yang digunakan di seluruh aplikasi.                                |
 
 4. `menu.dart`
+   
 | Nama          | Fungsi                                                                                                                                        |
 | --------------|:---------------------------------------------------------------------------------------------------------------------------------------------:|
 | `Scaffold`    | Digunakan untuk mengatur layout utama halaman beserta struktur dasar aplikasi. Widget dasar untuk membangun halaman.                          |
