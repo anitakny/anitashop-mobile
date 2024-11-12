@@ -303,8 +303,111 @@ cd <APP_NAME>
 
 7. git `push`, `commit`, `push`
 
+# Tugas 8
+## Apa kegunaan `const` di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
+`const` digunakan untuk mendefinisikan nilai yang tetap dan tidak berubah selama runtime aplikasi, seperti warna, padding, margin, teks, atau ukuran tertentu. Keunggulan menggunakan `const` adalah peningkatan performa, karena Flutter dapat mengoptimalkan widget dengan mengetahui bahwa widget tersebut tidak perlu di-rebuild, sehingga tidak perlu diproses ulang jika terjadi perubahan dalam aplikasi. Selain itu, objek yang di-compile dengan `const` hanya disimpan sekali dalam memori bersama (shared memory), sehingga jika objek `const` yang sama digunakan di beberapa tempat, hanya satu objek yang disimpan, membuat penggunaan memori lebih efisien.
 
+Disarankan menggunakan `const` untuk menyimpan nilai widget atau objek yang tidak akan berubah selama runtime aplikasi dan tidak bergantung pada data dinamis, seperti teks, padding, margin, warna, atau ikon yang tetap. Namun, `const` sebaiknya tidak digunakan jika Anda membutuhkan widget atau objek yang dinamis, yaitu objek yang nilainya bergantung pada perubahan state atau input pengguna. Sebagai contoh, widget yang nilainya diperoleh dari variabel yang dapat berubah, seperti hasil dari `setState`, tidak sebaiknya menggunakan `const`.
 
+##  Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+- Column adalah widget yang mengatur tata letak widget di dalamnya secara vertikal (dari atas ke bawah). Column berguna ketika kita ingin menumpuk widget secara vertikal dalam satu kolom. Contoh implementasinya sebagai berikut:
+
+```
+    Column(
+        mainAxisAlignment: MainAxisAlignment.center,    // Mengatur ruang antara widget di sepanjang sumbu utama (vertikal dalam kasus Column)
+        crossAxisAlignment: CrossAxisAlignment.start,   // Digunakan untuk mengatur widget di sepanjang sumbu silang (horizontal dalam kasus Column)
+        children: <Widget>[
+            Text('Halo'),
+            SizedBox(height: 10),
+            Text('Tayo'),
+            SizedBox(height: 10),
+            ElevatedButton(
+            onPressed: () {},
+            child: Text('oyoy'),
+            ),
+        ],
+    );
+```
+Dalam contoh di atas, widget Text dan ElevatedButton ditampilkan secara vertikal dengan jarak antar item menggunakan SizedBox.
+
+- Row adalah widget yang mengatur tata letak widget di dalamnya secara horizontal (dari kiri ke kanan). Ini berguna ketika Anda ingin menyusun widget secara horizontal dalam satu baris. Contoh implementasinya sebagai berikut:
+
+```
+        Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,   // Mengatur ruang antara widget di sepanjang sumbu utama (horizontal dalam kasus Row)
+        crossAxisAlignment: CrossAxisAlignment.center,  // Digunakan untuk mengatur widget di sepanjang sumbu silang (vertikal dalam kasus Row)
+        children: <Widget>[
+            Icon(Icons.star, color: Colors.orange),
+            Text('Halo'),
+            ElevatedButton(
+            onPressed: () {},
+            child: Text('Tombol'),
+            ),
+        ],
+    );
+```
+Dalam contoh di atas, Icon, Text, dan ElevatedButton ditampilkan secara horizontal dengan jarak yang merata di antara elemen menggunakan MainAxisAlignment.spaceAround.
+
+## Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+Pada halaman form ini, elemen input yang digunakan adalah sebagai berikut:
+
+1. **TextFormField**:
+   - Untuk mengisi **nama produk** (`Product Name`), **harga** (`Price`), **deskripsi** (`Description`), dan **jumlah** (`Quantity`).
+   - Setiap elemen ini memiliki fungsi validasi untuk memastikan bahwa nilai yang dimasukkan benar dan tidak kosong.
+
+2. **ElevatedButton**:
+   - Tombol untuk menyimpan data produk yang telah diisi. Ketika ditekan, tombol ini akan memvalidasi form dan menampilkan dialog konfirmasi jika semua input valid.
+
+Selain elemen yang telah digunakan, beberapa elemen input Flutter lain yang tidak digunakan dalam tugas ini adalah:
+
+1. **DropdownButton**:
+   - Berguna untuk memilih satu nilai dari beberapa opsi dalam bentuk dropdown. Elemen ini tidak digunakan karena semua data input dalam form ini adalah input teks atau angka, dan tidak ada kebutuhan untuk pemilihan opsi.
+
+2. **Checkbox**:
+   - Cocok untuk input dengan pilihan boolean (ya/tidak, aktif/tidak aktif). Elemen ini tidak digunakan karena form ini tidak memerlukan input boolean atau pilihan ganda.
+
+3. **Radio**:
+   - Biasa digunakan untuk memilih satu dari beberapa opsi yang tetap. Elemen ini tidak diperlukan karena tidak ada data yang membutuhkan pemilihan satu opsi dari beberapa pilihan.
+
+4. **Slider**:
+   - Untuk memilih nilai numerik dalam rentang tertentu dengan cara menggeser. Elemen ini tidak diperlukan karena jumlah dan harga diinput secara langsung sebagai angka.
+
+5. **Switch**:
+   - Digunakan sebagai input boolean (on/off). Seperti `Checkbox`, elemen ini tidak diperlukan dalam tugas karena form ini tidak melibatkan pilihan on/off.
+
+6. **DatePicker** dan **TimePicker**:
+   - Keduanya digunakan untuk memilih tanggal dan waktu, berguna dalam form reservasi atau event yang memerlukan input waktu. Elemen ini tidak digunakan karena tidak ada kebutuhan untuk memasukkan waktu atau tanggal dalam form ini. 
+
+Setiap elemen di atas dapat menjadi opsi untuk tipe form yang lebih kompleks di masa depan, tergantung kebutuhan data input yang diperlukan.
+
+## Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+Untuk menjaga konsistensi tema dalam aplikasi Flutter, saya menggunakan `ThemeData`, contohnya melalui `ColorScheme` di `MaterialApp` yang terletak di `main.dart`. Lalu, setiap widget yang memerlukan akses ke warna atau gaya yang telah diatur dalam `ThemeData` dapat menggunakan `Theme.of(context)` untuk mendapatkan tema aplikasi. Dengan cara ini, tampilan aplikasi menjadi konsisten, dan jika ada perubahan pada warna atau gaya tema, cukup dilakukan di satu tempat (yaitu di `ThemeData`). Hal ini otomatis memperbarui semua elemen yang menggunakan warna atau gaya tersebut. Dalam aplikasi yang saya buat, beberapa elemen sudah menerapkan tema ini, contohnya sebagai berikut :
+
+```
+   class LeftDrawer extends StatelessWidget {
+   const LeftDrawer({super.key});
+   
+       @override
+       Widget build(BuildContext context) {
+           return Drawer(
+           child: ListView(
+               children: [
+               DrawerHeader(
+                       decoration: BoxDecoration(
+                   color: Theme.of(context).colorScheme.primary,
+               ),
+               ...
+               )]))}},
+```
+
+## Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+Flutter menyediakan class `Navigator` yang memiliki beberapa metode, seperti `Navigator.push`, `Navigator.pop`, dan `Navigator.pushReplacement`, yang dijelaskan dalam tutorial dan saya terapkan pada tugas kali ini.
+
+- **Navigator.push()** digunakan untuk menambahkan suatu route ke dalam stack yang dikelola oleh `Navigator`. Metode ini menempatkan route baru di bagian atas stack, yang berguna saat kita ingin berpindah halaman dan menambahkannya ke stack. Dengan begitu, pengguna dapat menekan tombol Kembali untuk kembali ke halaman sebelumnya yang berada di bawah halaman yang baru dibuka.
+
+- **Navigator.pop()** berfungsi menghapus route yang sedang aktif, sehingga halaman yang muncul adalah route di bawahnya dalam stack yang dikelola `Navigator` (biasanya halaman sebelumnya).
+
+- **Navigator.pushReplacement()** menggantikan route yang sedang aktif dengan route baru yang telah ditentukan, tanpa menambahkannya ke stack. Dengan metode ini, halaman saat ini diganti dengan halaman baru, dan pengguna tidak dapat kembali ke halaman sebelumnya karena halaman sebelumnya sudah tidak ada di stack.
 
 
 
