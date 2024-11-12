@@ -8,10 +8,17 @@ class MyHomePage extends StatelessWidget {
   final String className = 'PBP E'; // Kelas
 
   final List<ItemHomepage> items = [
+<<<<<<< HEAD:lib/screens/menu.dart
     ItemHomepage("Lihat Daftar Produk", Icons.shopping_bag, const Color.fromARGB(255, 32, 91, 45)),
     ItemHomepage("Tambah Produk", Icons.add, const Color.fromARGB(66, 146, 158, 70)),
     ItemHomepage("Logout", Icons.logout, const Color.fromARGB(255, 186, 74, 66)),
   ];
+=======
+         ItemHomepage("Lihat Daftar Produk", Icons.shopping_bag, const Color.fromARGB(255, 32, 91, 45)),
+         ItemHomepage("Tambah Produk", Icons.add, const Color.fromARGB(66, 146, 158, 70)),
+         ItemHomepage("Logout", Icons.logout, const Color.fromARGB(255, 186, 74, 66)),
+     ];
+>>>>>>> e854db800f5f5cea410929cab5cd099d41440c94:lib/menu.dart
 
   MyHomePage({super.key});
 
