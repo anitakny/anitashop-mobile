@@ -1,6 +1,8 @@
-# toko_anita
+# Toko Anita
 
-A new Flutter project.
+Nama : Anita Khoirun Nisa
+NPM : 2306152273
+PBP E
 
 ## Getting Started
 
