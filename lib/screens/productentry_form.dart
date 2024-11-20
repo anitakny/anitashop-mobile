@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:toko_anita/widgets/left_drawer.dart';
+import 'package:toko_anita/screens/menu.dart';
 
 class ProductEntryFormPage extends StatefulWidget {
   const ProductEntryFormPage({super.key});
@@ -10,18 +14,20 @@ class ProductEntryFormPage extends StatefulWidget {
 
 class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
   final _formKey = GlobalKey<FormState>();
+
   String _name = "";
-  double _price = 0;
+  double _price = 0.0;
   String _description = "";
   int _quantity = 0;
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text('Form Tambah Produk Kamu Hari ini'),
-        ),
+        title: const Text('Form Tambah Produk Kamu Hari Ini'),
+        centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
       ),
@@ -29,11 +35,13 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Product Name Input
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
                     hintText: "Product Name",
@@ -44,7 +52,7 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   ),
                   onChanged: (String? value) {
                     setState(() {
-                      _name = value!;
+                      _name = value ?? "";
                     });
                   },
                   validator: (String? value) {
@@ -55,8 +63,10 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   },
                 ),
               ),
+
+              // Price Input
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
                     hintText: "Price",
@@ -65,9 +75,10 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
+                  keyboardType: TextInputType.number,
                   onChanged: (String? value) {
                     setState(() {
-                      _price = double.tryParse(value!) ?? 0;
+                      _price = double.tryParse(value ?? "0") ?? 0.0;
                     });
                   },
                   validator: (String? value) {
@@ -81,8 +92,10 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   },
                 ),
               ),
+
+              // Description Input
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
                     hintText: "Description",
@@ -93,7 +106,7 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   ),
                   onChanged: (String? value) {
                     setState(() {
-                      _description = value!;
+                      _description = value ?? "";
                     });
                   },
                   validator: (String? value) {
@@ -104,8 +117,10 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   },
                 ),
               ),
+
+              // Quantity Input
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
                     hintText: "Quantity",
@@ -114,9 +129,10 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
+                  keyboardType: TextInputType.number,
                   onChanged: (String? value) {
                     setState(() {
-                      _quantity = int.tryParse(value!) ?? 0;
+                      _quantity = int.tryParse(value ?? "0") ?? 0;
                     });
                   },
                   validator: (String? value) {
@@ -130,52 +146,63 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   },
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+
+              // Submit Button
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Center(
                   child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(
-                        Theme.of(context).colorScheme.primary,
-                      ),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 50),
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Colors.white,
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('Produk berhasil disimpan'),
-                              content: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Name: $_name'),
-                                    Text('Price: $_price'),
-                                    Text('Description: $_description'),
-                                    Text('Quantity: $_quantity'),
-                                  ],
+                        // Prepare data
+                        final data = {
+                          'name': _name,
+                          'price': _price.toString(),
+                          'description': _description,
+                          'quantity': _quantity.toString(),
+                        };
+
+                        try {
+                          // Send request
+                          final response = await request.postJson(
+                            "http://localhost:8000/create-flutter/",
+                            jsonEncode(data),
+                          );
+
+                          if (context.mounted) {
+                            if (response['status'] == 'success') {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text("New product has been saved successfully!"),
                                 ),
-                              ),
-                              actions: [
-                                TextButton(
-                                  child: const Text('OK'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    _formKey.currentState!.reset();
-                                  },
+                              );
+                              Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => MyHomePage()),
+                                  );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text("Something went wrong, please try again."),
                                 ),
-                              ],
-                            );
-                          },
-                        );
+                              );
+                            }
+                          }
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Error occurred while saving the product."),
+                            ),
+                          );
+                        }
                       }
                     },
-                    child: const Text(
-                      "Save",
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    child: const Text("Save"),
                   ),
                 ),
               ),
